@@ -50,26 +50,27 @@ public class Tracker {
 
     public Item findById(int id) {
         int index = indexOf(id);
-        return index != -1? items[index] : null;
+        return index != -1 ? items[index] : null;
     }
 
     public boolean replace(int id, Item item) {
-        boolean rst = false;
         int index = indexOf(id);
-        if (index != -1) {
+        boolean rst = index != -1;
+        if (rst) {
             item.setId(items[index].getId());
             items[index] = item;
-            rst = true;
         }
         return rst;
     }
 
     public boolean delete(int id) {
         int index = indexOf(id);
-        System.arraycopy(items, index + 1, items, index,
-                size - index);
-        items[size - 1] = null;
-        size--;
-        return true;
+        boolean rst = index != -1;
+        if (rst) {
+            System.arraycopy(items, index + 1, items, index, size - index);
+            items[size - 1] = null;
+            size--;
+        }
+        return rst;
     }
 }
