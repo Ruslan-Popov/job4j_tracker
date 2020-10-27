@@ -14,9 +14,9 @@ public class Tracker {
     }
 
     public Item[] findAll() {
-        Item[] itemsWithoutNull = new Item[items.length];
+        Item[] itemsWithoutNull = new Item[this.size];
         int size = 0;
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < this.size; i++) {
             if (items[i] != null) {
                 itemsWithoutNull[size] = items[i];
                 size++;
@@ -26,9 +26,9 @@ public class Tracker {
     }
 
     public Item[] findByName(String key) {
-        Item[] itemsFoundByName = new Item[items.length];
+        Item[] itemsFoundByName = new Item[this.size];
         int size = 0;
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < this.size; i++) {
             if (items[i].getName().equals(key)) {
                 itemsFoundByName[size] = items[i];
                 size++;
