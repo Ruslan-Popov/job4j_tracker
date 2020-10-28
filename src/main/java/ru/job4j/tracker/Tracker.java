@@ -14,7 +14,6 @@ public class Tracker {
     }
 
     public Item[] findAll() {
-        Item[] items = new Item[this.size];
         return Arrays.copyOf(items, size);
     }
 
