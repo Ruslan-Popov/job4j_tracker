@@ -27,7 +27,6 @@ public class StartUI {
                 String name = scanner.nextLine();
                 Item item = new Item(id, name);
                 if (tracker.replace(id, item)) {
-                    tracker.replace(id, item);
                     System.out.println("Replaced!");
                 } else {
                     System.out.println("ID not found");
@@ -36,7 +35,6 @@ public class StartUI {
                 System.out.println("Enter ID of item you want to delete");
                 int id = Integer.valueOf(scanner.nextLine());
                 if (tracker.delete(id)) {
-                    tracker.delete(id);
                     System.out.println("Deleted!");
                 } else {
                     System.out.println("ID not found");
