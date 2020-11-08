@@ -1,6 +1,11 @@
 package ru.job4j.tracker;
 
 public class StartUI {
+    private final Output out;
+
+    public StartUI(Output out) {
+        this.out = out;
+    }
 
     public void init(Input input, Tracker tracker, UserAction[] actions) {
         boolean run = true;
@@ -20,11 +25,12 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
+        Output output = new ConsoleOutput();
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
-        UserAction[] actions = {new CreateAction(), new ShowAllAction(), new ReplaceItemAction(),
-                                new DeleteItemAction(), new SearchItemWithIDAction(),
-                                new SearchItemsWithNameAction(), new ExitAction()};
-        new StartUI().init(input, tracker, actions);
+        UserAction[] actions = {new CreateAction(output), new ShowAllAction(output), new ReplaceItemAction(output),
+                                new DeleteItemAction(output), new SearchItemWithIDAction(output),
+                                new SearchItemsWithNameAction(output), new ExitAction(output)};
+        new StartUI(output).init(input, tracker, actions);
     }
 }
