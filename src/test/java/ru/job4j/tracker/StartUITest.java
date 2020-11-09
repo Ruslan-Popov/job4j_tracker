@@ -6,48 +6,63 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 
 public class StartUITest {
-//    @Test
-//    public void whenCreateItem() {
-//        Input in = new StubInput(
-//                new String[]{"0", "Item name", "1"}
-//        );
-//        Tracker tracker = new Tracker();
-//        UserAction[] actions = {
-//                new CreateAction(),
-//                new ExitAction()
-//        };
-//        new StartUI().init(in, tracker, actions);
-//        assertThat(tracker.findAll()[0].getName(), is("Item name"));
-//    }
-//
-//    @Test
-//    public void whenReplaceItemAction() {
-//        Tracker tracker = new Tracker();
-//        Item item = new Item("Old item");
-//        tracker.add(item);
-//        Input in = new StubInput(
-//                new String[]{"0", String.valueOf(item.getId()), "New item",  "1"}
-//        );
-//        UserAction[] actions = {
-//                new ReplaceItemAction(),
-//                new ExitAction()
-//        };
-//        new StartUI().init(in, tracker, actions);
-//        assertThat(tracker.findAll()[0].getName(), is("New item"));
-//    }
-//
-//    @Test
-//    public void whenDeleteItemAction() {
-//        Tracker tracker = new Tracker();
-//        Item item = tracker.add(new Item("First item"));
-//        Input in = new StubInput(
-//                new String[] {"0", String.valueOf(item.getId()), "1"}
-//        );
-//        UserAction[] actions = {
-//                new DeleteItemAction(),
-//                new ExitAction()
-//        };
-//        new StartUI().init(in, tracker, actions);
-//        assertThat(tracker.findById(item.getId()), is(nullValue()));
-//    }
+    @Test
+    public void whenExit() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + System.lineSeparator() +
+                        "0. ==== Exit program ====" + System.lineSeparator()
+        ));
+    }
+
+    @Test
+    public void whenShowAll() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0", "1"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new ShowAllAction(out), new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + System.lineSeparator() +
+                        "0. ==== Show all items ====" + System.lineSeparator() +
+                        "1. ==== Exit program ====" + System.lineSeparator() +
+                        "Menu." + System.lineSeparator() +
+                        "0. ==== Show all items ====" + System.lineSeparator() +
+                        "1. ==== Exit program ====" + System.lineSeparator()
+        ));
+    }
+
+    @Test
+    public void whenFindByIdAction() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0", "1", "1"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new SearchItemWithIDAction(out), new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + System.lineSeparator() +
+                        "0. ==== Find item by id ====" + System.lineSeparator() +
+                        "1. ==== Exit program ====" + System.lineSeparator() +
+                        "There is no item with such ID" + System.lineSeparator() +
+                        "Menu." + System.lineSeparator() +
+                        "0. ==== Find item by id ====" + System.lineSeparator() +
+                        "1. ==== Exit program ====" + System.lineSeparator()
+        ));
+    }
 }
