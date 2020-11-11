@@ -65,4 +65,29 @@ public class StartUITest {
                         "1. ==== Exit program ====" + System.lineSeparator()
         ));
     }
+
+    @Test
+    public void whenSearchItemsWithNameAction() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0", "First", "1"}
+        );
+        Item first = new Item("First");
+        Tracker tracker = new Tracker();
+        tracker.add(first);
+        UserAction[] actions = {
+                new SearchItemsWithNameAction(out), new ExitAction(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + System.lineSeparator() +
+                        "0. ==== Find items by name ====" + System.lineSeparator() +
+                        "1. ==== Exit program ====" + System.lineSeparator() +
+                        "Found First with IDs:" + System.lineSeparator() +
+                        "1" + System.lineSeparator() +
+                        "Menu." + System.lineSeparator() +
+                        "0. ==== Find items by name ====" + System.lineSeparator() +
+                        "1. ==== Exit program ====" + System.lineSeparator()
+        ));
+    }
 }
