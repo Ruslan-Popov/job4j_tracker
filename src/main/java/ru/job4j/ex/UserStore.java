@@ -6,6 +6,7 @@ public class UserStore {
         for (int index = 0; index < users.length; index++) {
             if (users[index].getUsername().equals(login)) {
                 user = users[index];
+                break;
             }
         }
         if (user == null) {
@@ -28,7 +29,7 @@ public class UserStore {
             User[] users = {
                     new User("Petr Arsentev", true)
             };
-            User user = findUser(users, "Petr Arsente");
+            User user = findUser(users, "Petr Arsentev");
             if (validate(user)) {
                 System.out.println("This user has an access");
             }
