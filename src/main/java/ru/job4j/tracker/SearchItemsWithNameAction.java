@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 public class SearchItemsWithNameAction implements UserAction {
     private final Output out;
 
@@ -15,11 +17,11 @@ public class SearchItemsWithNameAction implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         String itemSearched = input.askStr("Enter name of the item to search");
-        Item[] itemsFound = tracker.findByName(itemSearched);
-        if (itemsFound.length != 0) {
+        List<Item> itemsFound = tracker.findByName(itemSearched);
+        if (itemsFound.size() != 0) {
             out.println("Found " + itemSearched + " with IDs:");
-            for (int i = 0; i < itemsFound.length; i++) {
-                out.println(itemsFound[i].getId());
+            for (int i = 0; i < itemsFound.size(); i++) {
+                out.println(itemsFound.get(i).getId());
             }
         } else {
             out.println("There is no items with such name");

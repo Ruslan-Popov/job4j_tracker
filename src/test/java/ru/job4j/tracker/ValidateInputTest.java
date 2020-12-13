@@ -2,6 +2,9 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -9,13 +12,12 @@ public class ValidateInputTest {
     @Test
     public void whenInvalidExit() {
         Output out = new StubOutput();
+        List<String> stringList = Arrays.asList("2", "0");
         Input in = new StubInput(
-                new String[]{"2", "0"}
+                stringList
         );
         Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new ExitAction(out)
-        };
+        List<UserAction> actions = Arrays.asList(new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
                 String.format(
@@ -31,8 +33,9 @@ public class ValidateInputTest {
     @Test
     public void whenInvalidInput() {
         Output out = new StubOutput();
+        List<String> stringList = Arrays.asList("one", "1");
         Input in = new StubInput(
-                new String[]{"one", "1"}
+                stringList
         );
         ValidateInput input = new ValidateInput(out, in);
         int selected = input.askInt("Enter menu:");
@@ -42,8 +45,9 @@ public class ValidateInputTest {
     @Test
     public void whenValidInput() {
         Output out = new StubOutput();
+        List<String> stringList = Arrays.asList("10");
         Input in = new StubInput(
-                new String[]{"10"}
+                stringList
         );
         ValidateInput input = new ValidateInput(out, in);
         int selected = input.askInt("Enter menu");
@@ -52,16 +56,13 @@ public class ValidateInputTest {
 
     @Test(expected = NumberFormatException.class)
     public void whenOutput() {
+        List<String> stringList = Arrays.asList("exit", "0");
         Input in = new StubInput(
-                new String[]{
-            "exit", "0"
-        }
+                stringList
         );
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        UserAction[] actions = new UserAction[]{
-                new ExitAction(out)
-        };
+        List<UserAction> actions = Arrays.asList(new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
                 String.format(
