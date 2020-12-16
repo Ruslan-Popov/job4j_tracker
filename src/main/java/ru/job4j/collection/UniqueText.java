@@ -14,6 +14,7 @@ public class UniqueText {
         for (String dupl : text) {
             if (!check.contains(dupl)) {
                 rsl = false;
+                break;
             }
         }
         return rsl;
