@@ -7,26 +7,12 @@ import java.util.List;
 public class StringCompare implements Comparator<String> {
     @Override
     public int compare(String left, String right) {
-        for (int i = 0; i < left.length(); i++) {
-            if (i > right.length() - 1) {
-                return 1;
-            }
-            char l = left.charAt(i);
-            char r = right.charAt(i);
-            if (l < r) {
-                return -1;
-            }
-            if (l > r) {
-                return 1;
-            }
-            if (i == left.length() - 1 && right.length() > left.length()) {
-                return -1;
+        for (int i = 0; i < Math.min(left.length(), right.length()); i++) {
+            int rsl = Character.compare(left.charAt(i), right.charAt(i));
+            if (rsl != 0) {
+                return rsl;
             }
         }
-        return 0;
-    }
-    public static void main(String[] args) {
-        System.out.println("Ivanov".compareTo("Ivanova"));
-//        System.out.println("Ivan".charAt(4));
+        return Integer.compare(left.length(), right.length());
     }
 }
