@@ -33,7 +33,7 @@ public class BankServiceTest {
     }
 
     @Test
-    public void TransferMoney() {
+    public void transferMoney() {
         User user = new User("3434", "Petr Arsentev");
         BankService bank = new BankService();
         bank.addUser(user);

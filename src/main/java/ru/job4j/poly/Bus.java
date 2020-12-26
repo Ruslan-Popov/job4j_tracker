@@ -6,7 +6,7 @@ public class Bus implements Transport {
     }
 
     @Override
-    public void getPassengersInfo(int Passengers) {
+    public void getPassengersInfo(int passengers) {
     }
 
     @Override

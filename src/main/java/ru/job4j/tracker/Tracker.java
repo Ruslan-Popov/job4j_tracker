@@ -20,10 +20,11 @@ public class Tracker {
 
     public List<Item> findByName(String key) {
         List<Item> itemsFoundByName = new ArrayList<>();
-        for (Item item : items)
+        for (Item item : items) {
             if (item.getName().equals(key)) {
                 itemsFoundByName.add(item);
             }
+        }
         return itemsFoundByName;
     }
 

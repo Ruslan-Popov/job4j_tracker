@@ -8,6 +8,7 @@ public class Engineer extends Profession {
     public int calculate() {
         return -1;
     }
+
     public void fix() {
     }
 }

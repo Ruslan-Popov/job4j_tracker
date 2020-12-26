@@ -22,8 +22,8 @@ public class StartUITest {
         List<UserAction> actions = Arrays.asList(new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator() +
-                        "0. ==== Exit program ====" + System.lineSeparator()
+                "Menu." + System.lineSeparator()
+                        + "0. ==== Exit program ====" + System.lineSeparator()
         ));
     }
 
@@ -38,13 +38,14 @@ public class StartUITest {
         List<UserAction> actions = Arrays.asList(new ShowAllAction(out), new ExitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator() +
-                        "0. ==== Show all items ====" + System.lineSeparator() +
-                        "1. ==== Exit program ====" + System.lineSeparator() +
-                        "Menu." + System.lineSeparator() +
-                        "0. ==== Show all items ====" + System.lineSeparator() +
-                        "1. ==== Exit program ====" + System.lineSeparator()
-        ));
+                "Menu." + System.lineSeparator()
+                        + "0. ==== Show all items ====" + System.lineSeparator()
+                        + "1. ==== Exit program ====" + System.lineSeparator()
+                        + "Menu." + System.lineSeparator()
+                        + "0. ==== Show all items ====" + System.lineSeparator()
+                        + "1. ==== Exit program ====" + System.lineSeparator()
+                )
+        );
     }
 
     @Test
@@ -55,16 +56,19 @@ public class StartUITest {
                 stringList
         );
         Tracker tracker = new Tracker();
-        List<UserAction> actions = Arrays.asList(new SearchItemWithIDAction(out), new ExitAction(out));
+        List<UserAction> actions = Arrays.asList(
+                new SearchItemWithIDAction(out),
+                new ExitAction(out)
+        );
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator() +
-                        "0. ==== Find item by id ====" + System.lineSeparator() +
-                        "1. ==== Exit program ====" + System.lineSeparator() +
-                        "There is no item with such ID" + System.lineSeparator() +
-                        "Menu." + System.lineSeparator() +
-                        "0. ==== Find item by id ====" + System.lineSeparator() +
-                        "1. ==== Exit program ====" + System.lineSeparator()
+                "Menu." + System.lineSeparator()
+                        + "0. ==== Find item by id ====" + System.lineSeparator()
+                        + "1. ==== Exit program ====" + System.lineSeparator()
+                        + "There is no item with such ID" + System.lineSeparator()
+                        + "Menu." + System.lineSeparator()
+                        + "0. ==== Find item by id ====" + System.lineSeparator()
+                        + "1. ==== Exit program ====" + System.lineSeparator()
         ));
     }
 
@@ -78,17 +82,20 @@ public class StartUITest {
         Item first = new Item("First");
         Tracker tracker = new Tracker();
         tracker.add(first);
-        List<UserAction> actions = Arrays.asList(new SearchItemsWithNameAction(out), new ExitAction(out));
+        List<UserAction> actions = Arrays.asList(
+                new SearchItemsWithNameAction(out),
+                new ExitAction(out)
+        );
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator() +
-                        "0. ==== Find items by name ====" + System.lineSeparator() +
-                        "1. ==== Exit program ====" + System.lineSeparator() +
-                        "Found First with IDs:" + System.lineSeparator() +
-                        "1" + System.lineSeparator() +
-                        "Menu." + System.lineSeparator() +
-                        "0. ==== Find items by name ====" + System.lineSeparator() +
-                        "1. ==== Exit program ====" + System.lineSeparator()
+                "Menu." + System.lineSeparator()
+                        + "0. ==== Find items by name ====" + System.lineSeparator()
+                        + "1. ==== Exit program ====" + System.lineSeparator()
+                        + "Found First with IDs:" + System.lineSeparator()
+                        + "1" + System.lineSeparator()
+                        + "Menu." + System.lineSeparator()
+                        + "0. ==== Find items by name ====" + System.lineSeparator()
+                        + "1. ==== Exit program ====" + System.lineSeparator()
         ));
     }
 }

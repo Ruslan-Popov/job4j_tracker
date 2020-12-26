@@ -6,20 +6,6 @@ public class Product {
     private String name;
     private int count;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return count == product.count &&
-                name.equals(product.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, count);
-    }
-
     public Product(String name, int count) {
         this.name = name;
         this.count = count;
@@ -39,5 +25,23 @@ public class Product {
 
     public int getCount() {
         return count;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Product product = (Product) o;
+        return count == product.count
+                && name.equals(product.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, count);
     }
 }
