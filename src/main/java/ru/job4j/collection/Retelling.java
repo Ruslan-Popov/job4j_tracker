@@ -6,8 +6,10 @@ import java.util.HashSet;
 public class Retelling {
     public static boolean generateBy(String originText, String duplicateText) {
         boolean rsl = true;
-        String[] orig = originText.split(" |\\r?\\n|,|\\.|!|;");
-        String[] dupl = duplicateText.split(" ");
+        String origWords = originText.replaceAll("\\p{P}", "");
+        String duplWords = duplicateText.replaceAll("\\p{P}", "");
+        String[] orig = origWords.split(" ");
+        String[] dupl = duplWords.split(" ");
         HashSet<String> temp = new HashSet<>();
         for (String origWord : orig) {
             temp.add(origWord);
