@@ -1,14 +1,15 @@
 package ru.job4j.stream;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
-import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.*;
 
-public class ProfileTest {
+public class ProfilesTest {
     @Test
     public void whenMap() {
         Address address1 = new Address("SPb", "Nevskiy", 1, 1);
