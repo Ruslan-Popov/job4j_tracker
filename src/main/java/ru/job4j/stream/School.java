@@ -23,12 +23,11 @@ public class School {
 
     public Map<String, Student> studMap(List<Student> students) {
         return students.stream()
-                .distinct()
                 .collect(
                         Collectors.toMap(
                                 s -> s.getSurname(),
-                                s -> s
-                        )
+                                s -> s,
+                                (existing, replacement) -> existing)
                 );
     }
 }

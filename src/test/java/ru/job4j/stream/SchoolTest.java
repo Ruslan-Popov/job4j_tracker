@@ -64,7 +64,7 @@ public class SchoolTest {
     }
 
     @Test
-    public void whenStudToMap() {
+    public void whenStudentsToMap() {
         School sc = new School();
         Map<String, Student> rst = sc.studMap(students);
         assertThat(rst.get("Surname 2"), is (new Student(20, "Surname 2")));
