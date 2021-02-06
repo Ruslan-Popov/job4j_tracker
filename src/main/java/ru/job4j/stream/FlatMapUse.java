@@ -7,14 +7,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FlatMapUse {
-    public static void main(String[] args) {
-        Integer[][] ints = {
-                {1, 2},
-                {3, 4}
-        };
-        List<Integer> rst = Stream.of(ints)
+
+    public static List<Integer> convert(Integer[][] oldList) {
+        return Stream.of(oldList)
                 .flatMap(Arrays::stream)
                 .collect(Collectors.toList());
-        System.out.println(rst);
     }
 }
