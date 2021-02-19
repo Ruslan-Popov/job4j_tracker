@@ -84,10 +84,16 @@ public class BankService {
         boolean rsl = false;
         Optional<Account> srcAccountOpt = this.findByRequisite(srcPassport, srcRequisite);
         Optional<Account> destAccountOpt = this.findByRequisite(destPassport, destRequisite);
-        Account srcAccount = srcAccountOpt.get();
-        Account destAccount = destAccountOpt.get();
+        Account srcAccount = null;
+        if (srcAccountOpt.isPresent()) {
+            srcAccount = srcAccountOpt.get();
+        }
+        Account destAccount = null;
+        if (destAccountOpt.isPresent()) {
+            destAccount = destAccountOpt.get();
+        }
 
-        if (amount <= srcAccount.getBalance()) {
+        if (srcAccount != null && amount <= srcAccount.getBalance() && destAccount != null) {
             srcAccount.setBalance(srcAccount.getBalance() - amount);
             destAccount.setBalance(destAccount.getBalance() + amount);
             rsl = true;
